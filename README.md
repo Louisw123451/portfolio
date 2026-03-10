@@ -54,9 +54,3 @@ python -m http.server 8080
 ```
 
 Then open [http://localhost:8080](http://localhost:8080).
-
-## Contact
-
-- 📧 wzm1161381488@gmail.com
-- 💼 [linkedin.com/in/louis-wang-4600241b4](https://linkedin.com/in/louis-wang-4600241b4)
-- 🐙 [github.com/Louisw123451](https://github.com/Louisw123451)
