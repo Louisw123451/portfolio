@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Louis Wang — Cyber Security Graduate | Perth, WA</title>
+  <meta name="description" content="Louis Wang — Cyber Security & Digital Forensics graduate based in Perth, WA. Skilled in ethical hacking, incident response, penetration testing, and security governance. Open to opportunities." />
+  <meta name="author" content="Louis Wang" />
+  <meta name="robots" content="index, follow" />
+  <!-- Open Graph (LinkedIn / Facebook previews) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Louis Wang — Cyber Security Graduate" />
+  <meta property="og:description" content="Cyber Security & Digital Forensics graduate in Perth, WA. Ethical hacking, incident response, penetration testing. Open to opportunities." />
+  <meta property="og:url" content="" />
+  <!-- Twitter / X card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Louis Wang — Cyber Security Graduate" />
+  <meta name="twitter:description" content="Cyber Security & Digital Forensics graduate in Perth, WA. Open to opportunities." />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon.png" />
+  <meta name="msapplication-TileImage" content="favicon.png" />
+  <meta name="msapplication-TileColor" content="#05050f" />
+  <meta name="theme-color" content="#05050f" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+</head>
+<body>
+
+<!-- =============================================
+     VISITOR QUESTIONNAIRE MODAL
+     To receive submissions by email, sign up at
+     https://formspree.io, create a new form, and
+     replace YOUR_FORM_ID below with your form ID.
+     ============================================= -->
+<div id="visitor-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-icon">👾</div>
+      <h2 id="modal-title">Hey there, mysterious visitor!</h2>
+      <p>Before you witness greatness, I have one tiny question...</p>
+    </div>
+    <form id="visitor-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <input type="hidden" name="_subject" value="New Portfolio Visitor!" />
+      <div class="form-group">
+        <label>Who are you? (Be honest — I have forensic skills 🔍)</label>
+        <div class="radio-group">
+          <label class="radio-option">
+            <input type="radio" name="visitor_type" value="Employer/Recruiter" />
+            <span>👔 Employer / Recruiter <em>(please hire me, I promise I'm great)</em></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="visitor_type" value="Fellow Tech Person" />
+            <span>💻 Fellow Tech Person <em>(let's collab, always down)</em></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="visitor_type" value="Cyber Researcher / Stalker" />
+            <span>🕵️ Cyber Researcher… or Stalker <em>(same thing, really)</em></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="visitor_type" value="Just Cruising the Internet" />
+            <span>🌊 Just Cruising the Internet <em>(respect, stay as long as you want)</em></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="visitor_type" value="Genuinely Lost" />
+            <span>😅 Genuinely No Idea How I Got Here <em>(happens to the best of us)</em></span>
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="visitor_type" value="AI Bot" />
+            <span>🤖 I'm an AI Bot <em>(hello fellow silicon-based lifeform)</em></span>
+          </label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="visitor-message">Drop a note — say hi, roast me, or share a security tip:</label>
+        <textarea id="visitor-message" name="message" rows="3"
+          placeholder="e.g. 'Your site is cool' or 'You misspelled cybersecurity twice' 👀"
+          maxlength="500"></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="submit" class="btn-primary">
+          <i class="fas fa-rocket"></i> Launch Me In!
+        </button>
+        <button type="button" id="skip-btn" class="btn-ghost">I'm shy, skip this</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Particle Canvas -->
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+
+<!-- ===================== NAVIGATION ===================== -->
+<nav id="navbar" aria-label="Main navigation">
+  <div class="nav-container">
+    <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+      <span class="logo-bracket">[</span><span class="logo-text">LW</span><span class="logo-bracket">]</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://linkedin.com/in/louis-wang-4600241b4" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/Louisw123451" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle mobile menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#certifications">Certs</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</div>
+
+<!-- ===================== HERO ===================== -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-greeting">Hello, World! 👋 I'm</div>
+    <h1 class="hero-name">LOUIS WANG</h1>
+    <div class="hero-typing">
+      <span class="typing-prefix">$ ./run </span><span id="typing-text" class="typing-text"></span><span class="typing-cursor" aria-hidden="true">|</span>
+    </div>
+    <p class="hero-tagline">Cyber Security Graduate &nbsp;·&nbsp; Digital Forensics &nbsp;·&nbsp; Perth, WA</p>
+    <div class="hero-available">
+      <span class="available-dot"></span>
+      <span>Open to Opportunities</span>
+    </div>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary"><i class="fas fa-code"></i> View My Work</a>
+      <a href="#contact" class="btn-outline"><i class="fas fa-envelope"></i> Get In Touch</a>
+    </div>
+  </div>
+  <div class="hero-scroll" aria-hidden="true"><div class="scroll-line"></div><span>scroll</span></div>
+</section>
+
+<!-- ===================== ABOUT ===================== -->
+<section id="about" class="section">
+  <div class="section-header">
+    <span class="section-number">01.</span>
+    <h2>About Me</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>Motivated Cyber Security and Digital Forensics graduate with Certificate IV in Business. Developed strong academic knowledge in cyber security governance, cyber forensics, ethical hacking, incident response, computer and network security, security architectures, risk management and cyber threat analysis.</p>
+      <p>Skilled in consulting, project management, and stakeholder engagement through university projects. Mandarin–English bilingual translator with professional meeting experience. A clear communicator and problem-solver with a strong interest in applying these skills across diverse industries.</p>
+      <div class="contact-info-grid">
+        <div class="contact-chip"><i class="fas fa-map-marker-alt"></i><span>Perth, Western Australia</span></div>
+        <div class="contact-chip"><i class="fas fa-envelope"></i><a href="mailto:wzm1161381488@gmail.com">wzm1161381488@gmail.com</a></div>
+        <div class="contact-chip"><i class="fab fa-linkedin"></i><a href="https://linkedin.com/in/louis-wang-4600241b4" target="_blank" rel="noopener noreferrer">LinkedIn</a></div>
+      </div>
+    </div>
+    <div class="about-affiliations reveal">
+      <h3>Affiliations & Memberships</h3>
+      <div class="affil-list">
+        <div class="affil-item"><i class="fas fa-shield-halved"></i><span>AISA Member</span></div>
+        <div class="affil-item"><i class="fas fa-laptop-code"></i><span>ACS Member</span></div>
+        <div class="affil-item"><i class="fas fa-graduation-cap"></i><span>Murdoch Business Alumni</span></div>
+        <div class="affil-item"><i class="fas fa-heart-pulse"></i><span>Mental Health First Aider™</span></div>
+        <div class="affil-item"><i class="fas fa-certificate"></i><span>CompTIA Security+ (Studying)</span></div>
+        <div class="affil-item"><i class="fas fa-language"></i><span>Bilingual: English & Mandarin</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SKILLS ===================== -->
+<section id="skills" class="section">
+  <div class="section-header">
+    <span class="section-number">02.</span>
+    <h2>Skills</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="skills-grid">
+    <div class="skills-col reveal">
+      <h3><i class="fas fa-microchip"></i> Technical Skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag t1">ICT &amp; Cyber Security</span>
+        <span class="skill-tag t1">Ethical Hacking</span>
+        <span class="skill-tag t1">Cyber Forensics</span>
+        <span class="skill-tag t1">Incident Response</span>
+        <span class="skill-tag t1">Security Governance</span>
+        <span class="skill-tag t1">Penetration Testing</span>
+        <span class="skill-tag t2">Windows &amp; Linux Admin</span>
+        <span class="skill-tag t2">Kali Linux</span>
+        <span class="skill-tag t2">Oracle SQL</span>
+        <span class="skill-tag t2">Python</span>
+        <span class="skill-tag t2">Bash</span>
+        <span class="skill-tag t2">PowerShell</span>
+        <span class="skill-tag t3">Autopsy</span>
+        <span class="skill-tag t3">Magnet AXIOM</span>
+        <span class="skill-tag t3">Network Security</span>
+        <span class="skill-tag t3">Risk Management</span>
+        <span class="skill-tag t3">AI &amp; Automation</span>
+        <span class="skill-tag t3">Microsoft Office</span>
+      </div>
+    </div>
+    <div class="skills-col reveal">
+      <h3><i class="fas fa-users"></i> Professional Skills</h3>
+      <div class="skill-tags">
+        <span class="skill-tag p1">Communication</span>
+        <span class="skill-tag p1">Stakeholder Engagement</span>
+        <span class="skill-tag p1">Team Collaboration</span>
+        <span class="skill-tag p2">Time Management</span>
+        <span class="skill-tag p2">Attention to Detail</span>
+        <span class="skill-tag p2">Customer Service</span>
+        <span class="skill-tag p3">Assurance &amp; Audit</span>
+        <span class="skill-tag p3">Analytical Research</span>
+        <span class="skill-tag p3">Project Management</span>
+        <span class="skill-tag p4">Bilingual CN/EN</span>
+        <span class="skill-tag p4">Perspective-taking</span>
+        <span class="skill-tag p4">Continuous Learning</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCE ===================== -->
+<section id="experience" class="section">
+  <div class="section-header">
+    <span class="section-number">03.</span>
+    <h2>Work Experience</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">AUG 2025 — PRESENT</div>
+      <div class="timeline-card">
+        <h3>Murdoch Guild Event Assistant</h3>
+        <h4>Murdoch Guild</h4>
+        <ul>
+          <li>Assisted in planning and setting up events, ensuring smooth operations from start to finish.</li>
+          <li>Actively promoted the Guild and its activities to students, increasing exposure and participation.</li>
+          <li>Engaged with students, visitors, vendors, and external customers, providing clear instructions and professional support.</li>
+          <li>Monitored event guidelines and ensured all materials were correctly prepared and displayed.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">JUN 2024 — DEC 2024</div>
+      <div class="timeline-card">
+        <h3>IT Help Desk Technician</h3>
+        <h4>Murdoch University</h4>
+        <ul>
+          <li>Delivered clear and supportive guidance to students and staff, ensuring understanding and a positive experience.</li>
+          <li>Identified and resolved technical issues in a timely and effective manner to support smooth operations.</li>
+          <li>Implemented knowledge-sharing processes and documentation to enhance team efficiency and consistency.</li>
+          <li>Promoted IT support services through social media engagement and on-campus flyer distribution.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">DEC 2022 — AUG 2023</div>
+      <div class="timeline-card">
+        <h3>Kitchen Crew</h3>
+        <h4>T4 / Sushi Hub</h4>
+        <ul>
+          <li>Coordinated with kitchen staff to ensure efficient and high-quality food preparation.</li>
+          <li>Managed multiple tasks under pressure to maintain smooth workflow and timely service.</li>
+          <li>Followed food safety and hygiene standards to ensure consistent product quality.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EDUCATION ===================== -->
+<section id="education" class="section">
+  <div class="section-header">
+    <span class="section-number">04.</span>
+    <h2>Education</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card reveal">
+      <div class="edu-icon"><i class="fas fa-shield-halved"></i></div>
+      <div class="edu-body">
+        <span class="edu-year">2023 — 2025</span>
+        <h3>Bachelor of Cyber Security and Forensics</h3>
+        <h4>Murdoch University</h4>
+        <div class="edu-tags">
+          <span>Cyber Threat Intelligence</span><span>Security Governance</span>
+          <span>Ethical Hacking</span><span>Digital Forensics</span>
+          <span>Network Security</span><span>Incident Response</span>
+          <span>Python / Bash / PowerShell</span><span>Oracle SQL</span>
+        </div>
+      </div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-icon"><i class="fas fa-briefcase"></i></div>
+      <div class="edu-body">
+        <span class="edu-year">2022</span>
+        <h3>Certificate IV in Business</h3>
+        <h4>Phoenix Academy</h4>
+        <div class="edu-tags">
+          <span>Project Management</span><span>Risk Assessment</span>
+          <span>Gantt Charts</span><span>Communication Strategies</span>
+        </div>
+      </div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-icon"><i class="fas fa-school"></i></div>
+      <div class="edu-body">
+        <span class="edu-year">2022</span>
+        <h3>WACE — Year 12</h3>
+        <h4>Aranmore Catholic College</h4>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROJECTS ===================== -->
+<section id="projects" class="section">
+  <div class="section-header">
+    <span class="section-number">05.</span>
+    <h2>Projects</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="projects-grid">
+
+    <!-- Featured: Year Planner — "teleport" card -->
+    <div class="project-card featured reveal">
+      <div class="project-badge">✨ Live App</div>
+      <div class="project-portal-ring" aria-hidden="true"></div>
+      <div class="project-icon">📅</div>
+      <h3>Year Planner</h3>
+      <p>A fully interactive year planning web application. Organise your year, set goals, and track progress — all in one sleek interface. Click the button to warp in!</p>
+      <div class="project-tech">
+        <span>Web App</span><span>Live</span><span>Planning Tool</span>
+      </div>
+      <div class="project-links">
+        <a href="https://louis-wang-s-year-planner.pages.dev/" target="_blank" rel="noopener noreferrer" class="btn-primary project-btn">
+          <i class="fas fa-rocket"></i> Teleport to App
+        </a>
+      </div>
+    </div>
+
+    <!-- Port Scanner -->
+    <div class="project-card reveal">
+      <div class="project-icon">🔍</div>
+      <h3>Port Scanning &amp; Delta Reporting System</h3>
+      <p>Developed a port scanning and delta reporting system for Murdoch University subnets, including automated alerts for critical ports and a web interface for managing reports and configurations, supporting disaster recovery strategies.</p>
+      <div class="project-tech">
+        <span>Python</span><span>Bash</span><span>Network Security</span>
+        <span>Web Interface</span><span>Disaster Recovery</span>
+      </div>
+      <div class="project-links">
+        <a href="https://teamfixit.github.io/portscan-delta-reporter/" target="_blank" rel="noopener noreferrer" class="btn-primary project-btn">
+          <i class="fas fa-external-link-alt"></i> View Project
+        </a>
+        <a href="https://github.com/TeamFixIT/portscan-delta-reporter" target="_blank" rel="noopener noreferrer" class="btn-ghost project-btn">
+          <i class="fab fa-github"></i> GitHub
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== CERTIFICATIONS ===================== -->
+<section id="certifications" class="section">
+  <div class="section-header">
+    <span class="section-number">06.</span>
+    <h2>Certifications &amp; Affiliations</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card reveal"><i class="fas fa-shield-halved"></i><span>CompTIA Security+ <em>(Studying)</em></span></div>
+    <div class="cert-card reveal"><i class="fas fa-laptop-code"></i><span>ACS Member</span></div>
+    <div class="cert-card reveal"><i class="fas fa-lock"></i><span>AISA Member</span></div>
+    <div class="cert-card reveal"><i class="fas fa-graduation-cap"></i><span>Murdoch Business Alumni</span></div>
+    <div class="cert-card reveal"><i class="fas fa-heart-pulse"></i><span>Mental Health First Aider™</span></div>
+    <div class="cert-card reveal"><i class="fas fa-people-arrows"></i><span>Remote Team Collaboration</span></div>
+    <div class="cert-card reveal"><i class="fas fa-wine-glass"></i><span>RSA Certificate</span></div>
+    <div class="cert-card reveal"><i class="fas fa-kit-medical"></i><span>First Aid &amp; CPR</span></div>
+    <div class="cert-card reveal"><i class="fas fa-hashtag"></i><span>Social Listening — Hootsuite</span></div>
+    <div class="cert-card reveal"><i class="fas fa-file-shield"></i><span>National Police Certificate</span></div>
+  </div>
+
+  <div class="sub-section-label">Events &amp; Engagement</div>
+  <div class="events-list">
+    <div class="event-chip reveal"><i class="fas fa-shield-virus"></i><span>2025 AISA PerthSEC</span></div>
+    <div class="event-chip reveal"><i class="fas fa-robot"></i><span>2025 Murdoch AI Hackathon</span></div>
+    <div class="event-chip reveal"><i class="fas fa-users"></i><span>Students of Cyber (SoC) — CyberWest Hub</span></div>
+    <div class="event-chip reveal"><i class="fas fa-building"></i><span>Scyne Advisory · PwC · RSM Seminars</span></div>
+  </div>
+</section>
+
+<!-- ===================== COMMUNITY ===================== -->
+<section id="community" class="section">
+  <div class="section-header">
+    <span class="section-number">07.</span>
+    <h2>Community &amp; Interests</h2>
+    <div class="section-line"></div>
+  </div>
+  <div class="community-grid">
+    <div class="community-card reveal">
+      <h3><i class="fas fa-hand-holding-heart"></i> Volunteering</h3>
+      <ul>
+        <li>Assisted over 100 individuals in a regional business union by providing essential resources, food, and financial support.</li>
+        <li>Food Packing Volunteer — Murdoch University Guild GIVE Program, preparing food packs for homeless individuals.</li>
+        <li>Currently applying to be Event Health Officer with St John.</li>
+      </ul>
+    </div>
+    <div class="community-card reveal">
+      <h3><i class="fas fa-dumbbell"></i> Hobbies &amp; Lifestyle</h3>
+      <div class="hobbies-wrap">
+        <span>🥋 Brazilian Jiu-Jitsu</span>
+        <span>🥊 Boxing</span>
+        <span>🤼 MMA</span>
+        <span>⛷️ Skiing</span>
+        <span>🏊 Swimming</span>
+        <span>🏕️ Camping</span>
+        <span>🏃 Trail Running</span>
+        <span>🎵 Choir</span>
+        <span>🤝 Networking Events</span>
+        <span>📈 Finance &amp; Entrepreneurship</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section id="contact" class="section contact-section">
+  <div class="section-header">
+    <span class="section-number">08.</span>
+    <h2>Get In Touch</h2>
+    <div class="section-line"></div>
+  </div>
+  <p class="contact-intro">I'm actively looking for new opportunities — whether that's in Cyber Security, IT, business, or anything in between. If you have a role in mind, a project idea, a collaboration, or just want to say hi — my inbox is always open!</p>
+  <div class="contact-links-grid">
+    <a href="mailto:wzm1161381488@gmail.com" class="contact-link reveal">
+      <i class="fas fa-envelope"></i>
+      <div><span class="cl-label">Email</span><span class="cl-value">wzm1161381488@gmail.com</span></div>
+    </a>
+    <a href="https://linkedin.com/in/louis-wang-4600241b4" target="_blank" rel="noopener noreferrer" class="contact-link reveal">
+      <i class="fab fa-linkedin"></i>
+      <div><span class="cl-label">LinkedIn</span><span class="cl-value">louis-wang-4600241b4</span></div>
+    </a>
+    <a href="https://github.com/Louisw123451" target="_blank" rel="noopener noreferrer" class="contact-link reveal">
+      <i class="fab fa-github"></i>
+      <div><span class="cl-label">GitHub</span><span class="cl-value">github.com/Louisw123451</span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer>
+  <div class="footer-inner">
+    <p>Designed &amp; Built by <span class="glow">Louis Wang</span></p>
+    <p class="footer-sub">Perth, WA &nbsp;·&nbsp; Open to Opportunities</p>
+    <div class="footer-icons">
+      <a href="https://linkedin.com/in/louis-wang-4600241b4" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/Louisw123451" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+      <a href="mailto:wzm1161381488@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+    </div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
